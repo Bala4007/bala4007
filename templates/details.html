@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Page</title>
+     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+</head>
+<body>
+     <div class="container">
+        <div class="col-md-offset-3 col-md-5">
+            <table class="table table-bordered">
+                <h2 class="page-header text-primary text-center">flight details</h2>
+                <thead>
+                    <tr>
+                    <th>S.no</th> 
+                    <th>flight number</th> 
+                    <th>flight name</th>
+                    <th>start place</th>
+                    <th>End place</th>
+                    <th>Date</th>
+                    <th>time</th>
+                    <th>Available seat</th>
+                </tr> 
+            </thead>
+            <tbody>
+                {% for res in data %}
+                    {% set i=loop.index %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td>{{res["flightnumber"]}}</td>
+                    <td>{{res["fname"]}}</td>
+                    <td>{{res["start"]}}</td>
+                    <td>{{res["end"]}}</td>
+                    <td>{{res["date"]}}</td>
+                    <td>{{res["time"]}}</td>
+                    <td>{{res["availableseet"]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </div>
+    </div>
+</body>
+</html>

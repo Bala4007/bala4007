@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Page</title>
+     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+</head>
+<body>
+     <div class="container">
+        <div class="col-md-offset-3 col-md-5">
+            <h2 class="page-header text-primary text-center">flight ticket Booking</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category,message in messages %}
+                            <div class="alert alert-{{category}}">{{message}}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+            <table class="table table-bordered">
+                <h2 class="page-header text-primary text-center">Available flight</h2>
+                    <thead>
+                        <tr>
+                        <th>S.no</th> 
+                        <th>flight number</th> 
+                        <th>flight name</th>
+                        <th>start place</th>
+                        <th>End place</th>
+                        <th>Date</th>
+                        <th>time</th>
+                        <th>Available seat</th>
+                        <th >howmany ticket</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    {% for res in data %}
+                        {% set i=loop.index %}
+                    <tr>
+                        <td>{{i}}</td>
+                        <td>{{res["flightnumber"]}}</td>
+                        <td>{{res["fname"]}}</td>
+                        <td>{{res["start"]}}</td>
+                        <td>{{res["end"]}}</td>
+                        <td>{{res["date"]}}</td>
+                        <td>{{res["time"]}}</td>
+                        <td>{{res["availableseet"]}}</td>
+                        <td><a href="{{url_for('book',fid=res['fid'],avl=res['availableseet'])}}" class="btn btn-primary btn-block">select</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
+            </div>
+            </form>
+        </div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+</head>
+<body>
+    <div class="container" style="margin-top:100px">
+        <div class="col-md-offset-1 col-md-10" >
+            <div class="col-md-offset-3 col-md-5">
+                <div class="shadow">
+                <form action="/update" method="POST" autocomplete="off">
+                    <h3 class="page-header text-primary">Add flight</h3>
+
+                     {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                    <div class="form-group">
+                        <label>flight no</label>
+                        <input type="number" name="flight number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>flight name</label>
+                        <input type="text" name="flightname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>from</label>
+                        <input type="text" name="from" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>to</label>
+                        <input type="text" name="to" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>date</label>
+                        <input type="date" name="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>time</label>
+                        <input type="time" name="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Available seat</label>
+                        <input type="text" name="Avl" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Add flight" class="btn btn-success btn-block">
+                    </div>
+                </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top:100px">
+        <div class="col-md-offset-1 col-md-10" >
+            <div class="col-md-offset-3 col-md-5">
+                <div class="shadow">
+                <form action="/remove" method="POST" autocomplete="off">
+                    <h3 class="page-header text-primary">Remove flight</h3>
+                     {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                    <div class="form-group">
+                        <label>enter flight name you want delete</label>
+                        <input type="text" name="flightname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>enter flight number you want delete</label>
+                        <input type="number" name="flightnumber" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="delete" class="btn btn-success btn-block">
+                    </div>
+                </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top:100px">
+        <div class="col-md-offset-1 col-md-10" >
+            <div class="col-md-offset-3 col-md-5">
+                <div class="shadow">
+                <form action="/details" method="POST" autocomplete="off">
+                    <h3 class="page-header text-primary">details of flight</h3>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>enter flight name</label>
+                            <input type="name" name="flightname" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>enter flight time</label>
+                            <input type="time" name="flighttime" class="form-control" required>
+                        </div>
+                        <input type="submit" value="flight details" class="btn btn-success btn-block">
+                        <a href="{{url_for('logout')}}" class="btn btn-primary btn-block">logout</a>
+                    </div>
+                </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(3000)
+    });
+</script>
